@@ -1,0 +1,24 @@
+[tasks.check-buf-installed]
+condition = { fail_message = "This project pulls protobuf definitions from https://buf.build, but the `buf` CLI is not installed. Please go to https://docs.buf.build/installation."}
+condition_script = [ "buf --version" ]
+command = "echo"
+args = [ "`buf` CLI detected." ]
+
+[tasks.clean-proto-dir]
+script = "rm -r proto/*"
+
+[tasks.ensure-proto-dir]
+command = "mkdir"
+args = [ "-p", "proto" ]
+
+[tasks.download-protobufs]
+command = "buf"
+args = [ "export", "buf.build/authzed/api", "--output", "./proto" ]
+
+[tasks.buld]
+dependencies = [
+    "check-buf-installed",
+    "ensure-proto-dir",
+    "clean-proto-dir",
+    "download-protobufs",
+]
