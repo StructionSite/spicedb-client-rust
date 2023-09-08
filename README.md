@@ -10,6 +10,7 @@ This package translates protobuf definitions for SpiceDB hosted on
 
 ### Prequisites
 
+0. Make sure protoc is installed - https://grpc.io/docs/protoc-installation
 1. Install `buf` CLI - https://docs.buf.build/installation
 2. Install `cargo-make` - `cargo install cargo-make`
 
